@@ -41,6 +41,7 @@ module Liquid
   PartialTemplateParser       = /#{TagStart}.*?#{TagEnd}|#{VariableStart}.*?#{VariableIncompleteEnd}/om
   TemplateParser              = /(#{PartialTemplateParser}|#{AnyStartingTag})/om
   VariableParser              = /\[[^\]]+\]|#{VariableSegment}+\??/o
+  VariableReferenceMarker     = '@'.freeze
 
   singleton_class.send(:attr_accessor, :cache_classes)
   self.cache_classes = true

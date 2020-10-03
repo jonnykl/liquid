@@ -68,6 +68,12 @@ module Liquid
         object.context = context if object.respond_to?(:context=)
       end
 
+      # strings starting with VariableReferenceMarker mark a reference to another variable
+      if object.is_a?(String) && object[0...VariableReferenceMarker.length] == VariableReferenceMarker
+        markup = object[1..-1]
+        object = VariableLookup.parse(markup).evaluate(context)
+      end
+
       object
     end
 
