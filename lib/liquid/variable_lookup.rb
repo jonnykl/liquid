@@ -70,7 +70,7 @@ module Liquid
 
       # strings starting with VariableReferenceMarker mark a reference to another variable
       if object.is_a?(String) && object[0...VariableReferenceMarker.length] == VariableReferenceMarker
-        markup = object[1..-1]
+        markup = object[VariableReferenceMarker.length..-1]
         object = VariableLookup.parse(markup).evaluate(context)
       end
 
